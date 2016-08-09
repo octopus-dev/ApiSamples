@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OctopusAPIDataExporter", "OctopusAPIDataExporter\OctopusAPIDataExporter.csproj", "{4388AAED-CFDA-4178-A1BA-EFB138EB8710}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OctopusAPIDataExporter.UnitTest", "OctopusAPIDataExporter.UnitTest\OctopusAPIDataExporter.UnitTest.csproj", "{CC3ABF2C-610A-4F00-8928-5216B62A7474}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4388AAED-CFDA-4178-A1BA-EFB138EB8710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4388AAED-CFDA-4178-A1BA-EFB138EB8710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4388AAED-CFDA-4178-A1BA-EFB138EB8710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4388AAED-CFDA-4178-A1BA-EFB138EB8710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC3ABF2C-610A-4F00-8928-5216B62A7474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC3ABF2C-610A-4F00-8928-5216B62A7474}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC3ABF2C-610A-4F00-8928-5216B62A7474}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC3ABF2C-610A-4F00-8928-5216B62A7474}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
