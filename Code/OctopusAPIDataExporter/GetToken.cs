@@ -15,10 +15,10 @@ namespace OctopusAPIDataExporter
                 _tokenurl = "http://localhost:9000/token";
             string _username = Properties.Settings.Default["userName"] as string;
             if (string.IsNullOrEmpty(_username))
-                _username = "test";
+                _username = "";
             string _password = Properties.Settings.Default["password"] as string;
             if (string.IsNullOrEmpty(_username))
-                _password = "123456";
+                _password = "";
             textBox_tokenUrl.Text = _tokenurl;
             textBox_userName.Text = _username;
             textBox_password.Text = _password;

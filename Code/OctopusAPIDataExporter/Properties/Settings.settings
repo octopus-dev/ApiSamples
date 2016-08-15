@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="tokenUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://127.0.0.1:9000/token</Value>
+      <Value Profile="(Default)">http://dataapi.bazhuayu.com/token</Value>
     </Setting>
     <Setting Name="userName" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">test</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="password" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">123456</Value>
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

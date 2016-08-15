@@ -12,9 +12,25 @@ namespace OctopusAPIDataExporter.UnitTest
         static void Main(string[] args)
         {
             APIRequester _apirequester = new APIRequester();
-            _apirequester.AssignUserAndUrls(new APIUser("test", "123456", "http://127.0.0.1:9000/token"));
-            Console.WriteLine("获取Token:");
-            string token = _apirequester.user.GetToken();
+            string userName, password, token = "";
+            while (string.IsNullOrEmpty(token))
+            {
+                Console.WriteLine("八爪鱼用户名：");
+                userName = Console.ReadLine();
+                Console.WriteLine("密码：");
+                password = Console.ReadLine();
+                _apirequester.AssignUserAndUrls(new APIUser(userName, password, "http://dataapi.bazhuayu.com/token"));
+                Console.WriteLine("获取Token:");
+                token = _apirequester.user.GetToken();
+                if (string.IsNullOrEmpty(token))
+                {
+                    Console.WriteLine("用户名或者密码错误");
+                }
+                else
+                {
+                    Console.WriteLine(token);
+                }
+            }
             Console.WriteLine("{0}", token);
             Console.WriteLine("获取任务组");
             _apirequester.GetTaskGroups(token, _apirequester.taskGroupUrl);
@@ -32,7 +48,6 @@ namespace OctopusAPIDataExporter.UnitTest
                         System.Threading.Thread.Sleep(1000);//服务器IP访问频率控制，这里暂停1秒
                     }
             }
-
             Console.ReadKey();
         }
     }

@@ -25,7 +25,7 @@ namespace OctopusAPIDataExporter.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://127.0.0.1:9000/token")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://dataapi.bazhuayu.com/token")]
         public string tokenUrl {
             get {
                 return ((string)(this["tokenUrl"]));
@@ -34,7 +34,7 @@ namespace OctopusAPIDataExporter.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("test")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string userName {
             get {
                 return ((string)(this["userName"]));
@@ -43,7 +43,7 @@ namespace OctopusAPIDataExporter.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("123456")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string password {
             get {
                 return ((string)(this["password"]));

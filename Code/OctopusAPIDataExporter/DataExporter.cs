@@ -136,18 +136,24 @@ namespace OctopusAPIDataExporter
         private void GetCheckedGroupAndTask(object _config)
         {
             APIRequester.TaskDataConfig config = _config as APIRequester.TaskDataConfig;
-            foreach (ListViewItem item in listView_taskGroup.Items)
+            try
             {
-                if (item.Checked)
+                foreach (ListViewItem item in listView_taskGroup.Items)
                 {
-                    config.groupIndex = item.Index;
-                    //Thread getAllDataThread = new Thread(new ParameterizedThreadStart(_apiRequester.GetDataByGroupAndSave));
-                    //getAllDataThread.Start(config);
-                    _apiRequester.GetDataByGroupAndSave(config);
+                    if (item.Checked)
+                    {
+                        config.groupIndex = item.Index;
+                        _apiRequester.GetDataByGroupAndSave(config);
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+
             }
             button_startExport.Enabled = true;
             listView_taskGroup.Enabled = true;
+
         }
 
 

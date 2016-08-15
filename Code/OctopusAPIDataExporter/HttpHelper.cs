@@ -10,8 +10,8 @@ namespace OctopusAPIDataExporter
     {
         public static string GetWithHeaders(string URL, Dictionary<string, string> headers)
         {
-            //try
-            //{
+            try
+            {
                 // Get the response instance.
                 WebRequest webReq = WebRequest.Create(URL);
                 webReq.Method = "GET";
@@ -24,11 +24,11 @@ namespace OctopusAPIDataExporter
                 webReq.Abort();
                 webReq = null;
                 return srcString;
-            //}
-            //catch (System.Exception ex)
-            //{
-            //    return ex.Message;
-            //}
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
         }
 
         ///<summary>
@@ -39,8 +39,8 @@ namespace OctopusAPIDataExporter
         ///<returns></returns>
         public static string Post(string URL, string strPostdata, Dictionary<string, string> _headers = null)
         {
-            //try
-            //{
+            try
+            {
                 WebClient webClient = new WebClient();
                 webClient.Headers.Add("Content-Type", "application/x-www-form-urlencoded");//采取POST方式必须加的header，如果改为GET方式的话就去掉这句话即可  
                 if (null != _headers)
@@ -58,12 +58,11 @@ namespace OctopusAPIDataExporter
                 webClient.Dispose();
                 webClient = null;
                 return srcString;
-            //}
-            //catch (Exception e)
-            //{
-            //    throw e;
-            //}
-            // return "";
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
         }
     }
 }
