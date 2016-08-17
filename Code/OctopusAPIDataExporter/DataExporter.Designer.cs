@@ -244,7 +244,7 @@
             // 
             // numericUpDown_pageSize
             // 
-            this.numericUpDown_pageSize.Location = new System.Drawing.Point(492, 39);
+            this.numericUpDown_pageSize.Location = new System.Drawing.Point(296, 37);
             this.numericUpDown_pageSize.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -266,33 +266,43 @@
             // 
             // numericUpDown_pageIndex
             // 
-            this.numericUpDown_pageIndex.Location = new System.Drawing.Point(312, 39);
+            this.numericUpDown_pageIndex.Location = new System.Drawing.Point(534, 40);
             this.numericUpDown_pageIndex.Maximum = new decimal(new int[] {
             1000,
+            0,
+            0,
+            0});
+            this.numericUpDown_pageIndex.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             this.numericUpDown_pageIndex.Name = "numericUpDown_pageIndex";
             this.numericUpDown_pageIndex.Size = new System.Drawing.Size(91, 21);
             this.numericUpDown_pageIndex.TabIndex = 15;
+            this.numericUpDown_pageIndex.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(409, 44);
+            this.label6.Location = new System.Drawing.Point(213, 42);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 12);
+            this.label6.Size = new System.Drawing.Size(65, 12);
             this.label6.TabIndex = 13;
-            this.label6.Text = "导出几条数据";
+            this.label6.Text = "数据分页数";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(213, 42);
+            this.label5.Location = new System.Drawing.Point(435, 43);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 12);
+            this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 11;
-            this.label5.Text = "从第几条开始";
+            this.label5.Text = "导出第几页";
             // 
             // button_selectSavePath
             // 
