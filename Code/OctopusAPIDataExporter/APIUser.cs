@@ -36,7 +36,7 @@ namespace OctopusAPIDataExporter
         }
 
         /// <summary>
-        /// 从Token的Url获取Token
+        /// get access token from token interface
         /// </summary>
         /// <returns>Token String</returns>
         public string GetToken()
@@ -54,11 +54,11 @@ namespace OctopusAPIDataExporter
         }
 
         /// <summary>
-        /// 示例代码：用HTTP的POST方法提交username和password，通过tokenUrl接口来获取token
+        /// Exaple function: submit username and password using HTTP method "POST", and you can get a token string
         /// </summary>
-        /// <param name="userName">八爪鱼用户名</param>
-        /// <param name="password">登录密码</param>
-        /// <param name="tokenUrl">token接口地址，一般为http://ipaddress:9000/token</param>
+        /// <param name="userName">username for Octoparse Account</param>
+        /// <param name="password">your password</param>
+        /// <param name="tokenUrl">token interface address, like: http://ipaddress:9000/token </param>
         /// <returns></returns>
         public string GetToken(string userName, string password, string tokenUrl)
         {

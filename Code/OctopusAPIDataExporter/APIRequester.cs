@@ -11,20 +11,18 @@ namespace OctopusAPIDataExporter
         public string taskUrl = null;
         public string allDataUrl = null;
         public string notExportedDataUrl = null;
-        public ControlChanger DelegGroupProgressTextChange;//控制任务组进度信息
-        public ControlChanger DelegTaskProgressTextChange;//控制任务进度信息
-        public ControlChanger DelegAddGroupIntoListView;//任务组列表控制
-        public ControlChanger DelegAddProgressInfoIntoListView;//任务组获取进度信息列表控制
-        public ProgressChanger DelegProgressChange;//控制获取数据进度条
-        public ProgressChanger DelegGroupProgressChange;//控制任务组进度条
+        public ControlChanger DelegGroupProgressTextChange;
+        public ControlChanger DelegTaskProgressTextChange;
+        public ControlChanger DelegAddGroupIntoListView;
+        public ControlChanger DelegAddProgressInfoIntoListView;
+        public ProgressChanger DelegProgressChange;
+        public ProgressChanger DelegGroupProgressChange;
 
-        //为用户和各种Url赋值
         public void AssignUserAndUrls(APIUser _user)
         {
             user = _user;
             AssignUrlsFromTokenUrl(_user.tokenUrl);
         }
-        //根据TokenUrl对其他Url赋值
         public void AssignUrlsFromTokenUrl(string tokenurl = null)
         {
             if (null == tokenurl)
@@ -36,12 +34,12 @@ namespace OctopusAPIDataExporter
             notExportedDataUrl = rootUrl + "/api/notexportdata";
         }
 
-        #region 示例代码
+        #region Example Code
         /// <summary>
-        /// 通过taskgroup接口来获得某个用户的所有taskgroup
+        /// using taskgroup interface to all the taskgroups of a user
         /// </summary>
-        /// <param name="token">某个用户的access token</param>
-        /// <param name="taskGroupUrl">taskgroup接口地址，一般为http://ipadress:9000/api/taskgroup</param>
+        /// <param name="token">access token of a user</param>
+        /// <param name="taskGroupUrl">taskgroup interface address, like: http://ipadress:9000/api/taskgroup </param>
         public void GetTaskGroups(string token, string taskGroupUrl)
         {
             if (null != token && null != taskGroupUrl)
@@ -70,12 +68,12 @@ namespace OctopusAPIDataExporter
         }
 
         /// <summary>
-        /// 通过task接口来获得某个任务组的所有tasks，请求格式http://ipadress:9000/api/task?taskgroupid=123
+        /// using task interface all the tasks of a taskgroup
         /// </summary>
         /// <param name="token">access token</param>
-        /// <param name="taskGroupID">任务组标识</param>
-        /// <param name="taskUrl">task接口地址，一般为http://ipadress:9000/api/task</param>
-        /// <returns>传入任务组ID的任务组下的所有任务</returns>
+        /// <param name="taskGroupID">taskGroupID</param>
+        /// <param name="taskUrl">task interface address, like: http://ipadress:9000/api/task?taskgroupid=123 </param>
+        /// <returns>all the task of the given task group</returns>
         public List<Task> GetTasks(string token, string taskGroupID, string taskUrl)
         {
             List<Task> tasks = null;
@@ -108,14 +106,14 @@ namespace OctopusAPIDataExporter
         }
 
         /// <summary>
-        /// 根据TaskID获取该任务采集的数据
+        /// using data export interface to get data of a task
         /// </summary>
-        /// <param name="token">用户Token</param>
-        /// <param name="dataUrl">数据接口地址</param>
-        /// <param name="taskID">任务ID</param>
-        /// <param name="pageIndex">初始数据条目位置</param>
-        /// <param name="pageSize">数据条目个数</param>
-        /// <returns>任务采集的数据</returns>
+        /// <param name="token">access token of a user</param>
+        /// <param name="dataUrl">data export interface address, like: http://ipadress:9000/api/alldata?taskid=123&pageIndex=0&pageSize=100 </param>
+        /// <param name="taskID">task ID</param>
+        /// <param name="pageIndex">page index of the paged data by pageSize for all data</param>
+        /// <param name="pageSize">the size of each paged data</param>
+        /// <returns>a page of data</returns>
         public string GetDataByTask(string token, string dataUrl, string taskID, int pageIndex, int pageSize)
         {
             string taskData = "";
@@ -148,7 +146,7 @@ namespace OctopusAPIDataExporter
                     }
                     else
                     {
-                        dataFilePath = string.Format("{4}/GroupID_{0}/_失败！_{1}_TaskID {2}{3}", user.taskGroups[groupIndex].taskGroupID, task.taskName, task.taskID, ".json", savePath);
+                        dataFilePath = string.Format("{4}/GroupID_{0}/_failed！_{1}_TaskID {2}{3}", user.taskGroups[groupIndex].taskGroupID, task.taskName, task.taskID, ".json", savePath);
                     }
                     taskdataFileWriter = File.CreateText(dataFilePath);
                     taskdataFileWriter.Write(taskData);
@@ -178,7 +176,7 @@ namespace OctopusAPIDataExporter
         }
         #endregion
 
-        //获取用户任务组
+        
         public void GetTaskGroups()
         {
             if (null != user && null != taskGroupUrl)
@@ -188,27 +186,23 @@ namespace OctopusAPIDataExporter
                 string TaskGroupsStr = HttpHelper.GetWithHeaders(taskGroupUrl, headers);
                 if (!TaskGroupsStr.Contains("\"data\":"))
                 {
-                    DelegGroupProgressTextChange(string.Format("获取任务组失败！"));
+                    DelegGroupProgressTextChange(string.Format("Failed to get task group(s)！"));
                     return;
                 }
                 JObject jsonTaskGroupsAll = JObject.Parse(TaskGroupsStr);
                 JArray jsonTaskGroupsJarray = jsonTaskGroupsAll["data"] as JArray;
                 int current = 0;
 
-                DelegGroupProgressTextChange(string.Format("共查询到{0}个TaskGroup", jsonTaskGroupsJarray.Count));
+                DelegGroupProgressTextChange(string.Format("{0} task group(s) found", jsonTaskGroupsJarray.Count));
                 user.taskGroups = new List<TaskGroup>(jsonTaskGroupsJarray.Count);
 
                 foreach (JToken jtokenTaskGroup in jsonTaskGroupsJarray)
                 {
-                    //异步线程并设定回调函数
-                    //AsyncCallback callback = new AsyncCallback(this.AsyncCallbackImpl);
-                    //tasksgetter.BeginInvoke(jtokenTaskGroup["taskGroupId"].ToString(), current, callback, tasksgetter);
-
                     user.taskGroups.Add(new TaskGroup()
                     {
                         taskGroupID = jtokenTaskGroup["taskGroupId"].ToString(),
                         taskGroupName = jtokenTaskGroup["taskGroupName"].ToString(),
-                        tasks = GetTasks(jtokenTaskGroup["taskGroupId"].ToString(), current)//将任务组中的任务数据同时获取到，此操作需要时间
+                        tasks = GetTasks(jtokenTaskGroup["taskGroupId"].ToString(), current)//get task info and data, may be somehow slow.
                     });
 
                     DelegAddGroupIntoListView(string.Format("{0}[ID:{1}]", user.taskGroups[current].taskGroupName, user.taskGroups[current].taskGroupID));
@@ -220,16 +214,14 @@ namespace OctopusAPIDataExporter
 
         }
 
-        //根据任务组ID获取任务
         public List<Task> GetTasks(string taskGroupID, int currentGroup)
         {
             List<Task> tasks = null;
             if (null != user && null != taskUrl)
             {
-                DelegAddProgressInfoIntoListView(string.Format("获取第{0}个TaskGroup中的Task...", currentGroup + 1));
+                DelegAddProgressInfoIntoListView(string.Format("Requiring task(s) for {0}th task group...", currentGroup + 1));
                 Dictionary<string, string> headers = new Dictionary<string, string>(2);
                 headers.Add("Authorization", string.Format("bearer {0}", user.token));
-                //headers.Add("Accept", "application/json");
                 string URL = string.Format("{0}?taskgroupid={1}", taskUrl, taskGroupID);
                 string taskStr = HttpHelper.GetWithHeaders(URL, headers);
                 if (taskStr.Contains("\"data\":"))
@@ -238,7 +230,7 @@ namespace OctopusAPIDataExporter
                     JArray jsonTasksJarray = jsonTasks["data"] as JArray;
                     tasks = new List<Task>(jsonTasksJarray.Count);
 
-                    DelegAddProgressInfoIntoListView(string.Format("成功，共{1}个Task！", currentGroup + 1, jsonTasksJarray.Count));
+                    DelegAddProgressInfoIntoListView(string.Format("Success to get {1} task(s)！", currentGroup + 1, jsonTasksJarray.Count));
                     int current = 0;
                     foreach (JToken jtokenTask in jsonTasksJarray)
                     {
@@ -252,16 +244,15 @@ namespace OctopusAPIDataExporter
                 }
                 else
                 {
-                    DelegAddProgressInfoIntoListView(string.Format("失败！返回文本：{1}", currentGroup + 1, taskStr));
+                    DelegAddProgressInfoIntoListView(string.Format("Failed!Responsed Message：{1}", currentGroup + 1, taskStr));
                 }
             }
             return tasks;
         }
 
-        //获取任务数据时常用的数据结构汇总
         public class TaskDataConfig
         {
-            public int dataType = 0;//0代表所有数据，1代表未导出数据
+            public int dataType = 0;//0 stand for all data，1 for unexported data
             public string taskID = "";
             public int groupIndex = 0;
             public int pageIndex = 1;
@@ -269,7 +260,6 @@ namespace OctopusAPIDataExporter
             public string savePath;
         }
 
-        //获取当前用户的所有组的所有任务及其数据
         public void GetDataByGroupAndSave(TaskDataConfig config)
         {
             StreamWriter taskdataFileWriter;
@@ -280,7 +270,7 @@ namespace OctopusAPIDataExporter
             {
                 foreach (Task task in user.taskGroups[config.groupIndex].tasks)
                 {
-                    DelegGroupProgressTextChange(string.Format("正在导出TaskGroup中的Task数据：{0}[ID:{1}]", user.taskGroups[config.groupIndex].taskGroupName, user.taskGroups[config.groupIndex].taskGroupID));
+                    DelegGroupProgressTextChange(string.Format("Exporting data for task(s) in group: {0}[ID:{1}]", user.taskGroups[config.groupIndex].taskGroupName, user.taskGroups[config.groupIndex].taskGroupID));
                     count++;
                     config.taskID = task.taskID;
                     taskData = GetDataByTask(config);
@@ -290,12 +280,12 @@ namespace OctopusAPIDataExporter
                     }
                     else
                     {
-                        dataFilePath = string.Format("{4}/GroupID_{0}/_失败！_{1}_TaskID {2}{3}", user.taskGroups[config.groupIndex].taskGroupID, task.taskName, task.taskID, ".json", config.savePath);
-                        DelegTaskProgressTextChange(string.Format("获取任务数据失败！"));
+                        dataFilePath = string.Format("{4}/GroupID_{0}/_Failed！_{1}_TaskID {2}{3}", user.taskGroups[config.groupIndex].taskGroupID, task.taskName, task.taskID, ".json", config.savePath);
+                        DelegTaskProgressTextChange(string.Format("Failed to get data for task!"));
                     }
                     taskdataFileWriter = File.CreateText(dataFilePath);
                     taskdataFileWriter.Write(taskData);
-                    DelegTaskProgressTextChange(string.Format("json文件保存：{0}", dataFilePath));
+                    DelegTaskProgressTextChange(string.Format("Saving JSON file: {0}", dataFilePath));
                     taskdataFileWriter.Close();
                     DelegProgressChange(count, user.taskGroups[config.groupIndex].tasks.Count);
                 }
@@ -306,7 +296,6 @@ namespace OctopusAPIDataExporter
             }
         }
 
-        //获取一个任务的数据
         public string GetDataByTask(TaskDataConfig config)
         {
             string taskData = "";
@@ -321,7 +310,6 @@ namespace OctopusAPIDataExporter
                 }
                 Dictionary<string, string> headers = new Dictionary<string, string>(2);
                 headers.Add("Authorization", string.Format("bearer {0}", user.token));
-                //headers.Add("Accept", "application/json");
                 URL = string.Format("{0}?taskid={1}&pageindex={2}&pagesize={3}", URL, config.taskID, config.pageIndex, config.pageSize);
                 DelegTaskProgressTextChange(string.Format("{0}", URL));
                 taskData = HttpHelper.GetWithHeaders(URL, headers);

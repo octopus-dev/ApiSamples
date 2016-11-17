@@ -116,13 +116,14 @@ namespace OctopusAPIDataExporter
 
         private void button_startExport_Click(object sender, EventArgs e)
         {
-            APIRequester.TaskDataConfig config = new APIRequester.TaskDataConfig() { pageIndex = (int)numericUpDown_pageIndex.Value, pageSize = (int)numericUpDown_pageSize.Value }; ;
+            APIRequester.TaskDataConfig config = new APIRequester.TaskDataConfig() { 
+                pageIndex = (int)numericUpDown_pageIndex.Value, 
+                pageSize = (int)numericUpDown_pageSize.Value }; ;
             if (radioButton_dataType.Checked)
                 config.dataType = 0;
             if (radioButton_dataType2.Checked)
                 config.dataType = 1;
             config.savePath = textBox_savePath.Text;
-            //GetCheckedGroupAndTask(config);
             if (listView_taskGroup.Items.Count > 0)
             {
                 button_startExport.Enabled = false;
@@ -161,16 +162,16 @@ namespace OctopusAPIDataExporter
         {
             if (null != GetCheckedGroupAndTaskThread)
             {
-                if (button_pause.Text == "继续")
+                if (button_pause.Text == "Continue")
                 {
-                    button_pause.Text = "暂停";
+                    button_pause.Text = "Pause";
                     GetCheckedGroupAndTaskThread.Resume();
 
                 }
                 else
                 {
                     GetCheckedGroupAndTaskThread.Suspend();
-                    button_pause.Text = "继续";
+                    button_pause.Text = "Continue";
                 }
             }
         }
@@ -181,7 +182,7 @@ namespace OctopusAPIDataExporter
             {
                 if (GetCheckedGroupAndTaskThread.ThreadState == ThreadState.Running)
                     GetCheckedGroupAndTaskThread.Abort();
-                button_startExport.Text = "重新开始";
+                button_startExport.Text = "Restart";
                 button_startExport.Enabled = true;
                 listView_taskGroup.Enabled = true;
                 GetCheckedGroupAndTaskThread = null;
@@ -191,7 +192,7 @@ namespace OctopusAPIDataExporter
         private void button_selectSavePath_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.Description = "请选择数据文件保存文件夹";
+            dialog.Description = "Please choose a folder";
             if (dialog.ShowDialog() == DialogResult.OK || dialog.ShowDialog() == DialogResult.Yes)
             {
                 textBox_savePath.Text = dialog.SelectedPath;
@@ -202,15 +203,15 @@ namespace OctopusAPIDataExporter
         {
             if (null != taskgroupThread)
             {
-                if (button_groupPause.Text == "继续")
+                if (button_groupPause.Text == "Continue")
                 {
-                    button_groupPause.Text = "暂停";
+                    button_groupPause.Text = "Pause";
                     taskgroupThread.Resume();
                 }
                 else
                 {
                     taskgroupThread.Suspend();
-                    button_groupPause.Text = "继续";
+                    button_groupPause.Text = "Continue";
                 }
             }
         }
@@ -223,7 +224,7 @@ namespace OctopusAPIDataExporter
                     taskgroupThread.Resume();
                 if (taskgroupThread.ThreadState == ThreadState.Running)
                     taskgroupThread.Abort();
-                button_GetTaskGroup.Text = "重新开始";
+                button_GetTaskGroup.Text = "Restart";
                 button_GetTaskGroup.Enabled = true;
                 taskgroupThread = null;
             }

@@ -27,14 +27,14 @@ namespace OctopusAPIDataExporter
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (button1.Text == "继续")
+            if (button1.Text == "Continue")
             {
                 this.Hide();
                 exporter = new DataExporter(_apiRequester);
                 DialogResult dr = exporter.ShowDialog();
                 if (dr == DialogResult.Abort || dr == DialogResult.Cancel || dr == DialogResult.No)
                     Application.Exit();
-                button1.Text = "获取Token";
+                button1.Text = "Get a token";
                 this.Show();
                 return;
             }
@@ -44,12 +44,12 @@ namespace OctopusAPIDataExporter
                 textBox_tokenText.Text = _apiRequester.user.GetToken();
                 if (string.IsNullOrEmpty(textBox_tokenText.Text))
                 {
-                    textBox_tokenText.Text = "获取token失败，请验证登录信息";
+                    textBox_tokenText.Text = "Failed to get a token, please check your username or password";
                     return;
                 }
                 if (null != _apiRequester.user.tokenUrl)
                     _apiRequester.AssignUrlsFromTokenUrl();
-                button1.Text = "继续";
+                button1.Text = "Continue";
             }
             else
                 return;

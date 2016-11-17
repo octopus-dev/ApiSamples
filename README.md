@@ -1,3 +1,5 @@
 #DataExportApi
-八爪鱼平台数据导出示例项目
-VS2012
+##Data Export API Demo v1.0
+##IDE: VS2012
+
+###@Skieer All Right Reserved

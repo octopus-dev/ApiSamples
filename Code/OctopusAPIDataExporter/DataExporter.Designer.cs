@@ -107,9 +107,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 12);
+            this.label2.Size = new System.Drawing.Size(59, 12);
             this.label2.TabIndex = 10;
-            this.label2.Text = "八爪鱼用户名";
+            this.label2.Text = "User Name";
             // 
             // button_reGetToken
             // 
@@ -117,7 +117,7 @@
             this.button_reGetToken.Name = "button_reGetToken";
             this.button_reGetToken.Size = new System.Drawing.Size(92, 23);
             this.button_reGetToken.TabIndex = 14;
-            this.button_reGetToken.Text = "重新获取Token";
+            this.button_reGetToken.Text = "Get New Token";
             this.button_reGetToken.UseVisualStyleBackColor = true;
             this.button_reGetToken.Click += new System.EventHandler(this.button_reGetToken_Click);
             // 
@@ -135,32 +135,32 @@
             this.groupBox1.Size = new System.Drawing.Size(761, 306);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "获取TaskGroup和Task信息";
+            this.groupBox1.Text = "State of TaskGroup and Task";
             // 
             // button_groupStop
             // 
-            this.button_groupStop.Location = new System.Drawing.Point(227, 16);
+            this.button_groupStop.Location = new System.Drawing.Point(283, 16);
             this.button_groupStop.Name = "button_groupStop";
             this.button_groupStop.Size = new System.Drawing.Size(75, 23);
             this.button_groupStop.TabIndex = 22;
-            this.button_groupStop.Text = "停止";
+            this.button_groupStop.Text = "Stop";
             this.button_groupStop.UseVisualStyleBackColor = true;
             this.button_groupStop.Click += new System.EventHandler(this.button_groupStop_Click);
             // 
             // progressBarGroupProgress
             // 
-            this.progressBarGroupProgress.Location = new System.Drawing.Point(120, 274);
+            this.progressBarGroupProgress.Location = new System.Drawing.Point(144, 274);
             this.progressBarGroupProgress.Name = "progressBarGroupProgress";
-            this.progressBarGroupProgress.Size = new System.Drawing.Size(635, 23);
+            this.progressBarGroupProgress.Size = new System.Drawing.Size(611, 23);
             this.progressBarGroupProgress.TabIndex = 6;
             // 
             // button_groupPause
             // 
-            this.button_groupPause.Location = new System.Drawing.Point(146, 16);
+            this.button_groupPause.Location = new System.Drawing.Point(200, 16);
             this.button_groupPause.Name = "button_groupPause";
             this.button_groupPause.Size = new System.Drawing.Size(75, 23);
             this.button_groupPause.TabIndex = 21;
-            this.button_groupPause.Text = "暂停";
+            this.button_groupPause.Text = "Pause";
             this.button_groupPause.UseVisualStyleBackColor = true;
             this.button_groupPause.Click += new System.EventHandler(this.button_groupPause_Click);
             // 
@@ -169,9 +169,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(7, 279);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(107, 12);
+            this.label8.Size = new System.Drawing.Size(131, 12);
             this.label8.TabIndex = 5;
-            this.label8.Text = "TaskGroup获取进度";
+            this.label8.Text = "Progress of TaskGroup";
             // 
             // listView_progressInfo
             // 
@@ -186,16 +186,16 @@
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "获取Task进度";
+            this.columnHeader1.Text = "State of requiring task(s)";
             this.columnHeader1.Width = 1000;
             // 
             // button_GetTaskGroup
             // 
-            this.button_GetTaskGroup.Location = new System.Drawing.Point(7, 16);
+            this.button_GetTaskGroup.Location = new System.Drawing.Point(8, 16);
             this.button_GetTaskGroup.Name = "button_GetTaskGroup";
-            this.button_GetTaskGroup.Size = new System.Drawing.Size(133, 23);
+            this.button_GetTaskGroup.Size = new System.Drawing.Size(186, 23);
             this.button_GetTaskGroup.TabIndex = 1;
-            this.button_GetTaskGroup.Text = "获取用户Task信息";
+            this.button_GetTaskGroup.Text = "Get task information";
             this.button_GetTaskGroup.UseVisualStyleBackColor = true;
             this.button_GetTaskGroup.Click += new System.EventHandler(this.button_GetTaskGroup_Click);
             // 
@@ -240,11 +240,11 @@
             this.groupBox2.Size = new System.Drawing.Size(761, 130);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "数据导出配置";
+            this.groupBox2.Text = "Configuration for data export";
             // 
             // numericUpDown_pageSize
             // 
-            this.numericUpDown_pageSize.Location = new System.Drawing.Point(296, 37);
+            this.numericUpDown_pageSize.Location = new System.Drawing.Point(318, 37);
             this.numericUpDown_pageSize.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -266,7 +266,7 @@
             // 
             // numericUpDown_pageIndex
             // 
-            this.numericUpDown_pageIndex.Location = new System.Drawing.Point(534, 40);
+            this.numericUpDown_pageIndex.Location = new System.Drawing.Point(551, 40);
             this.numericUpDown_pageIndex.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -289,20 +289,20 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(213, 42);
+            this.label6.Location = new System.Drawing.Point(225, 42);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 12);
+            this.label6.Size = new System.Drawing.Size(59, 12);
             this.label6.TabIndex = 13;
-            this.label6.Text = "数据分页数";
+            this.label6.Text = "Page size";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(435, 43);
+            this.label5.Location = new System.Drawing.Point(440, 43);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 11;
-            this.label5.Text = "导出第几页";
+            this.label5.Text = "Page index";
             // 
             // button_selectSavePath
             // 
@@ -310,7 +310,7 @@
             this.button_selectSavePath.Name = "button_selectSavePath";
             this.button_selectSavePath.Size = new System.Drawing.Size(86, 23);
             this.button_selectSavePath.TabIndex = 10;
-            this.button_selectSavePath.Text = "选择路径...";
+            this.button_selectSavePath.Text = "Select...";
             this.button_selectSavePath.UseVisualStyleBackColor = true;
             this.button_selectSavePath.Click += new System.EventHandler(this.button_selectSavePath_Click);
             // 
@@ -320,10 +320,10 @@
             this.groupBox4.Controls.Add(this.radioButton_Xml);
             this.groupBox4.Location = new System.Drawing.Point(10, 74);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(177, 49);
+            this.groupBox4.Size = new System.Drawing.Size(197, 49);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "文件保存格式";
+            this.groupBox4.Text = "Format of file";
             // 
             // radioButton_Json
             // 
@@ -353,10 +353,10 @@
             this.groupBox3.Controls.Add(this.radioButton_dataType2);
             this.groupBox3.Location = new System.Drawing.Point(10, 20);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(177, 49);
+            this.groupBox3.Size = new System.Drawing.Size(197, 49);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "数据导出范围";
+            this.groupBox3.Text = "Scope of data";
             // 
             // radioButton_dataType
             // 
@@ -367,7 +367,7 @@
             this.radioButton_dataType.Size = new System.Drawing.Size(71, 16);
             this.radioButton_dataType.TabIndex = 1;
             this.radioButton_dataType.TabStop = true;
-            this.radioButton_dataType.Text = "所有数据";
+            this.radioButton_dataType.Text = "All data";
             this.radioButton_dataType.UseVisualStyleBackColor = true;
             // 
             // radioButton_dataType2
@@ -375,27 +375,27 @@
             this.radioButton_dataType2.AutoSize = true;
             this.radioButton_dataType2.Location = new System.Drawing.Point(82, 20);
             this.radioButton_dataType2.Name = "radioButton_dataType2";
-            this.radioButton_dataType2.Size = new System.Drawing.Size(83, 16);
+            this.radioButton_dataType2.Size = new System.Drawing.Size(113, 16);
             this.radioButton_dataType2.TabIndex = 2;
-            this.radioButton_dataType2.Text = "未导出数据";
+            this.radioButton_dataType2.Text = "Unexported data";
             this.radioButton_dataType2.UseVisualStyleBackColor = true;
             // 
             // textBox_savePath
             // 
-            this.textBox_savePath.Location = new System.Drawing.Point(296, 93);
+            this.textBox_savePath.Location = new System.Drawing.Point(318, 93);
             this.textBox_savePath.Name = "textBox_savePath";
             this.textBox_savePath.ReadOnly = true;
-            this.textBox_savePath.Size = new System.Drawing.Size(347, 21);
+            this.textBox_savePath.Size = new System.Drawing.Size(325, 21);
             this.textBox_savePath.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(213, 98);
+            this.label1.Location = new System.Drawing.Point(226, 98);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 12);
+            this.label1.Size = new System.Drawing.Size(89, 12);
             this.label1.TabIndex = 8;
-            this.label1.Text = "文件保存路径";
+            this.label1.Text = "File save path";
             // 
             // button_startExport
             // 
@@ -403,7 +403,7 @@
             this.button_startExport.Name = "button_startExport";
             this.button_startExport.Size = new System.Drawing.Size(75, 23);
             this.button_startExport.TabIndex = 17;
-            this.button_startExport.Text = "开始导出";
+            this.button_startExport.Text = "Start";
             this.button_startExport.UseVisualStyleBackColor = true;
             this.button_startExport.Click += new System.EventHandler(this.button_startExport_Click);
             // 
@@ -413,7 +413,7 @@
             this.button_pause.Name = "button_pause";
             this.button_pause.Size = new System.Drawing.Size(75, 23);
             this.button_pause.TabIndex = 18;
-            this.button_pause.Text = "暂停";
+            this.button_pause.Text = "Pause";
             this.button_pause.UseVisualStyleBackColor = true;
             this.button_pause.Click += new System.EventHandler(this.button_pause_Click);
             // 
@@ -423,7 +423,7 @@
             this.button_stop.Name = "button_stop";
             this.button_stop.Size = new System.Drawing.Size(75, 23);
             this.button_stop.TabIndex = 19;
-            this.button_stop.Text = "停止";
+            this.button_stop.Text = "Stop";
             this.button_stop.UseVisualStyleBackColor = true;
             this.button_stop.Click += new System.EventHandler(this.button_stop_Click);
             // 
@@ -441,16 +441,16 @@
             this.groupBox5.Size = new System.Drawing.Size(761, 108);
             this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "数据导出";
+            this.groupBox5.Text = "Data export";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(8, 46);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(101, 12);
+            this.label7.Size = new System.Drawing.Size(203, 12);
             this.label7.TabIndex = 5;
-            this.label7.Text = "当前Task数据请求";
+            this.label7.Text = "Current data requiring for a task";
             // 
             // progressBar1
             // 
@@ -473,9 +473,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 76);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 12);
+            this.label3.Size = new System.Drawing.Size(149, 12);
             this.label3.TabIndex = 0;
-            this.label3.Text = "当前TaskGroup进度";
+            this.label3.Text = "Progress of a task group";
             // 
             // DataExporter
             // 
@@ -497,7 +497,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 650);
             this.Name = "DataExporter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "API数据导出工具";
+            this.Text = "API Data Export Tool 1.0";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
