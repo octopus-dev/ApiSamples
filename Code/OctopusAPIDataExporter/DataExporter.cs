@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -6,6 +7,7 @@ namespace OctopusAPIDataExporter
 {
     public delegate void ControlChanger(string progressText);
     public delegate void ProgressChanger(int current, int total);
+
     public partial class DataExporter : Form
     {
         public void ChangeGroupProgressText(string text)
@@ -116,9 +118,11 @@ namespace OctopusAPIDataExporter
 
         private void button_startExport_Click(object sender, EventArgs e)
         {
-            APIRequester.TaskDataConfig config = new APIRequester.TaskDataConfig() { 
-                pageIndex = (int)numericUpDown_pageIndex.Value, 
-                pageSize = (int)numericUpDown_pageSize.Value }; ;
+            APIRequester.TaskDataConfig config = new APIRequester.TaskDataConfig()
+            {
+                pageIndex = (int)numericUpDown_pageIndex.Value,
+                pageSize = (int)numericUpDown_pageSize.Value
+            }; ;
             if (radioButton_dataType.Checked)
                 config.dataType = 0;
             if (radioButton_dataType2.Checked)
@@ -126,35 +130,34 @@ namespace OctopusAPIDataExporter
             config.savePath = textBox_savePath.Text;
             if (listView_taskGroup.Items.Count > 0)
             {
+                CurrentCheckedGroupIndex.Clear();
+                foreach (ListViewItem item in listView_taskGroup.Items)
+                {
+                    if (item.Checked)
+                    {
+                        CurrentCheckedGroupIndex.Add(item.Index);
+                    }
+                }
                 button_startExport.Enabled = false;
                 listView_taskGroup.Enabled = false;
                 SetProgressBarValue(0, 100);
                 GetCheckedGroupAndTaskThread = new Thread(new ParameterizedThreadStart(GetCheckedGroupAndTask));
                 GetCheckedGroupAndTaskThread.Start(config);
             }
+            button_startExport.Enabled = true;
+            listView_taskGroup.Enabled = true;
+
         }
+        private List<int> CurrentCheckedGroupIndex = new List<int>();
 
         private void GetCheckedGroupAndTask(object _config)
         {
             APIRequester.TaskDataConfig config = _config as APIRequester.TaskDataConfig;
-            try
+            foreach (var item in CurrentCheckedGroupIndex)
             {
-                foreach (ListViewItem item in listView_taskGroup.Items)
-                {
-                    if (item.Checked)
-                    {
-                        config.groupIndex = item.Index;
-                        _apiRequester.GetDataByGroupAndSave(config);
-                    }
-                }
+                config.groupIndex = item;
+                _apiRequester.GetDataByGroupAndSave(config);
             }
-            catch (Exception e)
-            {
-
-            }
-            button_startExport.Enabled = true;
-            listView_taskGroup.Enabled = true;
-
         }
 
 

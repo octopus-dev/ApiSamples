@@ -45,9 +45,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 12);
+            this.label1.Size = new System.Drawing.Size(47, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Token获取地址";
+            this.label1.Text = "Address";
             // 
             // textBox_tokenUrl
             // 
@@ -60,7 +60,7 @@
             // 
             this.textBox_userName.Location = new System.Drawing.Point(102, 39);
             this.textBox_userName.Name = "textBox_userName";
-            this.textBox_userName.Size = new System.Drawing.Size(111, 21);
+            this.textBox_userName.Size = new System.Drawing.Size(108, 21);
             this.textBox_userName.TabIndex = 3;
             // 
             // label2
@@ -68,26 +68,26 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 42);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 12);
+            this.label2.Size = new System.Drawing.Size(59, 12);
             this.label2.TabIndex = 2;
-            this.label2.Text = "八爪鱼用户名";
+            this.label2.Text = "User name";
             // 
             // textBox_password
             // 
-            this.textBox_password.Location = new System.Drawing.Point(254, 39);
+            this.textBox_password.Location = new System.Drawing.Point(271, 39);
             this.textBox_password.Name = "textBox_password";
             this.textBox_password.PasswordChar = '*';
-            this.textBox_password.Size = new System.Drawing.Size(118, 21);
+            this.textBox_password.Size = new System.Drawing.Size(101, 21);
             this.textBox_password.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(219, 42);
+            this.label3.Location = new System.Drawing.Point(213, 42);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 12);
+            this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 4;
-            this.label3.Text = "密码";
+            this.label3.Text = "Password";
             // 
             // textBox_tokenText
             // 
@@ -113,7 +113,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(270, 23);
             this.button1.TabIndex = 8;
-            this.button1.Text = "获取Token";
+            this.button1.Text = "Get a Token";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -121,7 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 262);
+            this.ClientSize = new System.Drawing.Size(384, 261);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox_tokenText);
             this.Controls.Add(this.label4);
@@ -137,7 +137,7 @@
             this.MinimumSize = new System.Drawing.Size(400, 300);
             this.Name = "GetToken";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "生成Token";
+            this.Text = "Requiring Token";
             this.ResumeLayout(false);
             this.PerformLayout();
 

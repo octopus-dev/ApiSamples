@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -17,6 +18,10 @@ namespace OctopusAPIDataExporter
         public ControlChanger DelegAddProgressInfoIntoListView;
         public ProgressChanger DelegProgressChange;
         public ProgressChanger DelegGroupProgressChange;
+
+        public List<string> CurrentTaskGroups = new List<string>();
+        public List<string> CurrentTaskIds = new List<string>();
+
 
         public void AssignUserAndUrls(APIUser _user)
         {
@@ -128,7 +133,7 @@ namespace OctopusAPIDataExporter
             return taskData;
         }
 
-        public void GetDataByGroupAndSave(string token, int groupIndex,string savePath)
+        public void GetDataByGroupAndSave(string token, int groupIndex, string savePath)
         {
             StreamWriter taskdataFileWriter;
             new DirectoryInfo(string.Format("{1}/GroupID_{0}/", user.taskGroups[groupIndex].taskGroupID, savePath)).Create();
@@ -139,7 +144,7 @@ namespace OctopusAPIDataExporter
                 foreach (Task task in user.taskGroups[groupIndex].tasks)
                 {
                     count++;
-                    taskData = GetDataByTask(token,0,task.taskID,1,10);
+                    taskData = GetDataByTask(token, 0, task.taskID, 1, 10);
                     if (taskData.Contains("\"data\":"))
                     {
                         dataFilePath = string.Format("{4}/GroupID_{0}/{1}_TaskID {2}{3}", user.taskGroups[groupIndex].taskGroupID, task.taskName, task.taskID, ".json", savePath);
@@ -176,11 +181,12 @@ namespace OctopusAPIDataExporter
         }
         #endregion
 
-        
+
         public void GetTaskGroups()
         {
             if (null != user && null != taskGroupUrl)
             {
+                CurrentTaskGroups.Clear();
                 Dictionary<string, string> headers = new Dictionary<string, string>(1);
                 headers.Add("Authorization", string.Format("bearer {0}", user.token));
                 string TaskGroupsStr = HttpHelper.GetWithHeaders(taskGroupUrl, headers);
@@ -204,7 +210,7 @@ namespace OctopusAPIDataExporter
                         taskGroupName = jtokenTaskGroup["taskGroupName"].ToString(),
                         tasks = GetTasks(jtokenTaskGroup["taskGroupId"].ToString(), current)//get task info and data, may be somehow slow.
                     });
-
+                    CurrentTaskGroups.Add(jtokenTaskGroup["taskGroupId"].ToString());
                     DelegAddGroupIntoListView(string.Format("{0}[ID:{1}]", user.taskGroups[current].taskGroupName, user.taskGroups[current].taskGroupID));
                     current++;
                     DelegGroupProgressChange(current, jsonTaskGroupsJarray.Count);
@@ -216,6 +222,7 @@ namespace OctopusAPIDataExporter
 
         public List<Task> GetTasks(string taskGroupID, int currentGroup)
         {
+            CurrentTaskIds.Clear();
             List<Task> tasks = null;
             if (null != user && null != taskUrl)
             {
@@ -239,6 +246,7 @@ namespace OctopusAPIDataExporter
                             taskID = jtokenTask["taskId"].ToString(),
                             taskName = jtokenTask["taskName"].ToString()
                         });
+                        CurrentTaskIds.Add(jtokenTask["taskId"].ToString());
                         current++;
                     }
                 }
@@ -258,6 +266,8 @@ namespace OctopusAPIDataExporter
             public int pageIndex = 1;
             public int pageSize = 1;
             public string savePath;
+            public DateTime fromDate;
+            public DateTime toDate;
         }
 
         public void GetDataByGroupAndSave(TaskDataConfig config)
@@ -316,6 +326,25 @@ namespace OctopusAPIDataExporter
             }
             return taskData;
         }
+
+        //parameters needed:  config.taskID, config.pageIndex, config.pageSize, config.fromDate, config.toDate
+        public string GetDataForAPeriodOfTime(TaskDataConfig config)
+        {
+            string taskData = "";
+            if (null != user && null != allDataUrl)
+            {
+                string URL = "dataapi.bazhuayu.com/api/alldata/GetDataOfTaskByTimeAndPaging";
+                Dictionary<string, string> headers = new Dictionary<string, string>(2);
+                headers.Add("Authorization", string.Format("bearer {0}", user.token));
+                URL = string.Format("{0}?taskid={1}&pageindex={2}&pagesize={3}&from={4}&to={5}",
+                    URL, config.taskID, config.pageIndex, config.pageSize,
+                    config.fromDate.ToString("yyyy-MM-dd HH:mm:ss"), config.toDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                DelegTaskProgressTextChange(string.Format("{0}", URL));
+                taskData = HttpHelper.GetWithHeaders(URL, headers);
+            }
+            return taskData;
+        }
+
 
     }
 }
