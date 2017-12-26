@@ -9,9 +9,16 @@ namespace OctopusApiSamples
 {
     public class OctoparseSample
     {
-        private static readonly string _baseUrl = "";
+        //For advanced api: http://advanceapi.octoparse.com
+        private static readonly string _baseUrl = "http://dataapi.octoparse.com";
         private readonly RestClient _client = new RestClient(_baseUrl);
 
+        /// <summary>
+        /// Obtain a new token
+        /// </summary>
+        /// <param name="username">username</param>
+        /// <param name="password">password</param>
+        /// <returns>Token object</returns>
         public Token GetToken(string username, string password)
         {
             Requires.NotNullOrEmpty(username, nameof(username));
@@ -28,6 +35,11 @@ namespace OctopusApiSamples
             return JsonConvert.DeserializeObject<Token>(response.Content);                           
         }
 
+        /// <summary>
+        /// Refresh Token
+        /// </summary>
+        /// <param name="refreshToken">Token to refresh Access Token</param>
+        /// <returns>Token object</returns>
         public Token RefreshToken(string refreshToken)
         {
             Requires.NotNullOrEmpty(refreshToken, nameof(refreshToken));
@@ -42,6 +54,12 @@ namespace OctopusApiSamples
             return JsonConvert.DeserializeObject<Token>(response.Content);
         }
 
+        /// <summary>
+        /// List all tasks in a group
+        /// </summary>
+        /// <param name="accessToken">Access Token</param>
+        /// <param name="groupId">Task group ID</param>
+        /// <returns>Task list</returns>
         public List<Task> GetTasksByGroup(string accessToken, string groupId)
         {
             Requires.NotNullOrEmpty(accessToken, nameof(accessToken));
@@ -57,6 +75,11 @@ namespace OctopusApiSamples
             return result.Data;
         }
 
+        /// <summary>
+        /// List all task groups
+        /// </summary>
+        /// <param name="accessToken">Access Token</param>
+        /// <returns>task group list</returns>
         public List<TaskGroup> GetTaskGroups(string accessToken)
         {
             Requires.NotNullOrEmpty(accessToken, nameof(accessToken));
@@ -71,6 +94,14 @@ namespace OctopusApiSamples
             return result.Data;
         }
 
+        /// <summary>
+        /// Get data by offset
+        /// </summary>
+        /// <param name="accessToken">Access Token</param>
+        /// <param name="taskId">Task ID</param>
+        /// <param name="offset">Offset, if offset is less than or equal to 0, data will be returned starting from the first row</param>
+        /// <param name="size">The amount of data that will be returned (range from 1 to 1000) </param>
+        /// <returns>TaskDataOffsetResult object</returns>
         public TaskDataOffsetResult GetTaskDataByOffset(string accessToken, string taskId, long offset, int size)
         {
             Requires.NotNullOrEmpty(accessToken, nameof(accessToken));
@@ -91,6 +122,11 @@ namespace OctopusApiSamples
             return result.Data;
         }
 
+        /// <summary>
+        /// Clear task data
+        /// </summary>
+        /// <param name="accessToken">Access Token</param>
+        /// <param name="taskId">Task Id</param>
         public void RemoveTaskData(string accessToken, string taskId)
         {
             Requires.NotNullOrEmpty(accessToken, nameof(accessToken));
@@ -106,6 +142,13 @@ namespace OctopusApiSamples
             ThrowExceptionIfResultError(result);
         }
 
+        /// <summary>
+        /// Export non-exported data
+        /// </summary>
+        /// <param name="accessToken">Access Token</param>
+        /// <param name="taskId">Task Id</param>
+        /// <param name="size">The amount of data (range from 1 to 1000) </param>
+        /// <returns>TaskDataExportResult object</returns>
         public TaskDataExportResult ExportNotExportedData(string accessToken, string taskId, int size)
         {
             Requires.NotNullOrEmpty(accessToken, nameof(accessToken));
@@ -124,6 +167,11 @@ namespace OctopusApiSamples
             return result.Data;
         }
 
+        /// <summary>
+        /// Update data status
+        /// </summary>
+        /// <param name="accessToken">Access Token</param>
+        /// <param name="taskId">Task Id</param>
         public void MarkDataExported(string accessToken, string taskId)
         {
             Requires.NotNullOrEmpty(accessToken, nameof(accessToken));
@@ -140,6 +188,12 @@ namespace OctopusApiSamples
         }
 
         #region Advance apis
+        /// <summary>
+        /// Start running task
+        /// </summary>
+        /// <param name="accessToken">Access Token</param>
+        /// <param name="taskId">Task Id</param>
+        /// <returns>Start task status result</returns>
         public StartTaskResult StartTask(string accessToken, string taskId)
         {
             Requires.NotNullOrEmpty(accessToken, nameof(accessToken));
@@ -156,6 +210,11 @@ namespace OctopusApiSamples
             return result.Data;
         }
 
+        /// <summary>
+        /// Stop running task
+        /// </summary>
+        /// <param name="accessToken">Access Token</param>
+        /// <param name="taskId">Task Id</param>
         public void StopTask(string accessToken, string taskId)
         {
             Requires.NotNullOrEmpty(accessToken, nameof(accessToken));
@@ -171,6 +230,12 @@ namespace OctopusApiSamples
             ThrowExceptionIfResultError(result);
         }
 
+        /// <summary>
+        /// Get task status
+        /// </summary>
+        /// <param name="accessToken">Access Token</param>
+        /// <param name="taskIds">Task Id list</param>
+        /// <returns>TaskStatusModel list</returns>
         public List<TaskStatusModel> GetTaskStatusList(string accessToken, IEnumerable<string> taskIds)
         {
             Requires.NotNullOrEmpty(accessToken, nameof(accessToken));
@@ -187,6 +252,14 @@ namespace OctopusApiSamples
             return result.Data;
         }
 
+        /// <summary>
+        /// Get task rule property
+        /// </summary>
+        /// <typeparam name="T">Property type</typeparam>
+        /// <param name="accessToken">Access Token</param>
+        /// <param name="taskId">Task Id</param>
+        /// <param name="name">Property name</param>
+        /// <returns>Property value</returns>
         public T GetTaskRulePropertyByName<T>(string accessToken, string taskId, string name)
         {
             Requires.NotNullOrEmpty(accessToken, nameof(accessToken));
@@ -205,6 +278,14 @@ namespace OctopusApiSamples
             return result.Data;
         }
 
+        /// <summary>
+        /// Update task rule property
+        /// </summary>
+        /// <typeparam name="T">Property type</typeparam>
+        /// <param name="accessToken">Access Token</param>
+        /// <param name="taskId">Task Id</param>
+        /// <param name="name">Property name</param>
+        /// <param name="value">Property value</param>
         public void UpdateTaskRuleProperty<T>(string accessToken, string taskId, string name, T value)
         {
             Requires.NotNullOrEmpty(accessToken, nameof(accessToken));
@@ -227,6 +308,14 @@ namespace OctopusApiSamples
             ThrowExceptionIfResultError(result);
         }
 
+        /// <summary>
+        /// Add URL/text to a loop in task rule
+        /// </summary>
+        /// <typeparam name="T">Property type (string or IEnumerable<string>)</typeparam>
+        /// <param name="accessToken">Access Token</param>
+        /// <param name="taskId">Task Id</param>
+        /// <param name="name">Property name</param>
+        /// <param name="value">Property value</param>
         public void AddUrlOrTextToTask<T>(string accessToken, string taskId, string name, T value)
         {
             Requires.NotNullOrEmpty(accessToken, nameof(accessToken));
