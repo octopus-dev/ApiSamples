@@ -7,8 +7,8 @@
     <ProjectGuid>{4388AAED-CFDA-4178-A1BA-EFB138EB8710}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OctopusApiSamples</RootNamespace>
-    <AssemblyName>OctopusApiSamples</AssemblyName>
+    <RootNamespace>Octopus.ApiSamples</RootNamespace>
+    <AssemblyName>Octopus.ApiSamples</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>

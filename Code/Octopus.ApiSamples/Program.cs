@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OctopusApiSamples
+namespace Octopus.ApiSamples
 {
     static class Program
     {

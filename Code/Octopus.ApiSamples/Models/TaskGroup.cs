@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace OctopusApiSamples.Models
+namespace Octopus.ApiSamples.Models
 {
     public class TaskGroup
     {

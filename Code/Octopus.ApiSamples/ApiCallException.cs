@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OctopusApiSamples
+namespace Octopus.ApiSamples
 {
     public class ApiCallException : Exception
     {

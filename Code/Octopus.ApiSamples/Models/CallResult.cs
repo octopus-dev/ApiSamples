@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace OctopusApiSamples.Models
+namespace Octopus.ApiSamples.Models
 {
     public class CallResult
     {
