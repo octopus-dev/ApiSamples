@@ -1,18 +1,15 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OctopusAPIDataExporter.UnitTest")]
+[assembly: AssemblyTitle("OctopusApiSamples")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("OctopusAPIDataExporter.UnitTest")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyCompany("Skieer")]
+[assembly: AssemblyProduct("Octopus")]
+[assembly: AssemblyCopyright("Copyright © Skieer 2017")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -20,7 +17,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c28e1c32-1065-4bb5-90c8-02fefdf7ddc5")]
+[assembly: Guid("b197c765-ce4c-474f-8056-df7b046c477e")]
 
 // Version information for an assembly consists of the following four values:
 //
