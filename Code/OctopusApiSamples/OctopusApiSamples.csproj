@@ -79,7 +79,6 @@
     <Compile Include="Models\TaskDataExportResult.cs" />
     <Compile Include="Models\TaskStatusModel.cs" />
     <Compile Include="Utils\HttpStatusErrors.cs" />
-    <Compile Include="Models\ApiUserInfo.cs" />
     <Compile Include="Models\CallResult.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\TaskDataOffsetResult.cs" />

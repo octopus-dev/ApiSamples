@@ -78,7 +78,7 @@ namespace OctopusApiSamples
             Requires.MustGreaterThan(offset, 0, nameof(offset));
             Requires.MustGreaterThan(size, 0, nameof(size));
 
-            var request = new RestRequest("api/allData/GetDataOfTaskByOffset", Method.GET)
+            var request = new RestRequest("api/allData/getDataOfTaskByOffset", Method.GET)
                 .AddHeader("Authorization", string.Format("bearer {0}", accessToken))
                 .AddQueryParameter("taskId", taskId)
                 .AddQueryParameter("offset", offset.ToString())
