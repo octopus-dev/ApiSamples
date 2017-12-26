@@ -1,15 +1,15 @@
 ﻿using Newtonsoft.Json;
-using OctopusApiSamples.Models;
-using OctopusApiSamples.Utils;
+using Octopus.ApiSamples.Models;
+using Octopus.ApiSamples.Utils;
 using RestSharp;
 using System.Collections.Generic;
 using System.Net;
 
-namespace OctopusApiSamples
+namespace Octopus.ApiSamples
 {
     public class OctoparseSample
     {
-        //For advanced api: http://advanceapi.octoparse.com
+        //For advanced api: http://advancedapi.octoparse.com
         private static readonly string _baseUrl = "http://dataapi.octoparse.com";
         private readonly RestClient _client = new RestClient(_baseUrl);
 

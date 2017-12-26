@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 
-namespace OctopusApiSamples.Utils
+namespace Octopus.ApiSamples.Utils
 {
     public static class HttpStatusErrors
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OctopusApiSamples.Utils
+namespace Octopus.ApiSamples.Utils
 {
     public static class Requires
     {

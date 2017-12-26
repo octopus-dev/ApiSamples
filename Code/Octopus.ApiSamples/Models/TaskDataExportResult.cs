@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace OctopusApiSamples.Models
+namespace Octopus.ApiSamples.Models
 {
     public class TaskDataExportResult
     {
