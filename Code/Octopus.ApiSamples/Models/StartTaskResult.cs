@@ -1,4 +1,4 @@
-﻿namespace OctopusApiSamples.Models
+﻿namespace Octopus.ApiSamples.Models
 {
     public enum StartTaskResult
     {

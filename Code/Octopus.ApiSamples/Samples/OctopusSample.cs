@@ -1,15 +1,15 @@
 ﻿using Newtonsoft.Json;
-using OctopusApiSamples.Models;
-using OctopusApiSamples.Utils;
+using Octopus.ApiSamples.Models;
+using Octopus.ApiSamples.Utils;
 using RestSharp;
 using System.Collections.Generic;
 using System.Net;
 
-namespace OctopusApiSamples
+namespace Octopus.ApiSamples
 {
     public class OctopusSample
     {
-        //增值Api用户请使用地址: http://advanceapi.bazhuayu.com
+        //增值Api用户请使用地址: http://advancedapi.bazhuayu.com
         private static readonly string _baseUrl = "http://dataapi.bazhuayu.com";
         private readonly RestClient _client = new RestClient(_baseUrl);
 
