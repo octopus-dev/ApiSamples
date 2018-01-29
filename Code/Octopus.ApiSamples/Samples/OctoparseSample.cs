@@ -9,9 +9,15 @@ namespace Octopus.ApiSamples
 {
     public class OctoparseSample
     {
+
         //For advanced api: http://advancedapi.octoparse.com
-        private static readonly string _baseUrl = "http://dataapi.octoparse.com";
-        private readonly RestClient _client = new RestClient(_baseUrl);
+        private readonly string _baseUrl = "http://dataapi.octoparse.com";
+        private readonly RestClient _client;
+        public OctoparseSample(string baseUrl)
+        {
+            _baseUrl = baseUrl;
+            _client = new RestClient(_baseUrl);
+        }
 
         /// <summary>
         /// Obtain a new token
@@ -32,7 +38,7 @@ namespace Octopus.ApiSamples
             var response = _client.Execute(request);
             ThrowExceptionIfResponseError(response);
 
-            return JsonConvert.DeserializeObject<Token>(response.Content);                           
+            return JsonConvert.DeserializeObject<Token>(response.Content);
         }
 
         /// <summary>
@@ -106,7 +112,6 @@ namespace Octopus.ApiSamples
         {
             Requires.NotNullOrEmpty(accessToken, nameof(accessToken));
             Requires.NotNullOrEmpty(taskId, nameof(taskId));
-            Requires.MustGreaterThan(offset, 0, nameof(offset));
             Requires.MustGreaterThan(size, 0, nameof(size));
 
             var request = new RestRequest("api/allData/getDataOfTaskByOffset", Method.GET)
