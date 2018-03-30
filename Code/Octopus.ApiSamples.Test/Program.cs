@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Security.Cryptography;
+
 namespace Octopus.ApiSamples.Test
 {
     class Program
@@ -12,12 +14,34 @@ namespace Octopus.ApiSamples.Test
         public static Token Token;
         public static string TaskId = "c1b785d4-ac6b-4312-ae03-f13b2430ef52";
         public static string TaskIdOperation = "fdd0875e-545b-4c62-9bc1-e14e8bbb0c73";
+        
         static void Main(string[] args)
         {
             try
             {
-                OctoparseSample octoparseSample = new OctoparseSample("http://advancedapi.bazhuayu.com");
-                Token = octoparseSample.GetToken("vaecole", "qwer1010");
+                string address = "http://{0}.bazhuayu.com";
+                bool isAdvanced = true;
+#if INTER
+                address = "http://{0}.octoparse.com";
+                TaskId = "dacd06a1-216d-4553-b73f-3b53416cc7b5";
+                TaskIdOperation = "82e80964-e104-48fa-b3cc-ed49fe68ed44";
+#endif
+                string apiName = "dataapi";
+                if (isAdvanced)
+                {
+                    apiName = "advancedapi";
+                }
+                address = string.Format(address, apiName);
+                if (args.Length > 0)
+                {
+                    address = args[0];
+                }
+                if (args.Length > 1)
+                {
+                    isAdvanced = bool.Parse(args[1]);
+                }
+                OctoparseSample octoparseSample = new OctoparseSample(address);
+                Token = octoparseSample.GetToken("username", "password");
                 Debug.Assert(Token?.AccessToken != null);
                 Console.WriteLine(Token.AccessToken + Token.ExpiresIn);
 
@@ -62,48 +86,51 @@ namespace Octopus.ApiSamples.Test
                 }
                 Console.WriteLine("OK.");
 
-                Console.WriteLine("ExportNotExportedData:");
+                Console.WriteLine("MarkDataExported:");
                 octoparseSample.MarkDataExported(Token.AccessToken, TaskId);
                 Console.WriteLine("OK.");
 
                 #region Advanced
-                Console.WriteLine("StartTask:");
-                var startRes = octoparseSample.StartTask(Token.AccessToken, TaskIdOperation);
-                Console.WriteLine(startRes);
+                if (isAdvanced)
+                {
+                    Console.WriteLine("StartTask:");
+                    var startRes = octoparseSample.StartTask(Token.AccessToken, TaskIdOperation);
+                    Console.WriteLine(startRes);
 
-                System.Threading.Thread.Sleep(2000);
+                    System.Threading.Thread.Sleep(2000);
 
-                Console.WriteLine("Task Status:");
-                var statuses = octoparseSample.GetTaskStatusList(Token.AccessToken, new string[] { TaskIdOperation });
-                Console.WriteLine(statuses.FirstOrDefault().Status);
+                    Console.WriteLine("Task Status:");
+                    var statuses = octoparseSample.GetTaskStatusList(Token.AccessToken, new string[] { TaskIdOperation });
+                    Console.WriteLine(statuses.FirstOrDefault().Status);
 
-                Console.WriteLine("StopTask:");
-                octoparseSample.StopTask(Token.AccessToken, TaskIdOperation);
-                Console.WriteLine("OK.");
-                statuses = octoparseSample.GetTaskStatusList(Token.AccessToken, new string[] { TaskIdOperation });
-                Console.WriteLine(statuses.FirstOrDefault().Status);
+                    Console.WriteLine("StopTask:");
+                    octoparseSample.StopTask(Token.AccessToken, TaskIdOperation);
+                    Console.WriteLine("OK.");
+                    statuses = octoparseSample.GetTaskStatusList(Token.AccessToken, new string[] { TaskIdOperation });
+                    Console.WriteLine(statuses.FirstOrDefault().Status);
 
-                Console.WriteLine("UpdateTaskRuleProperty: navigateAction1.Url");
-                octoparseSample.UpdateTaskRuleProperty<string>(Token.AccessToken, TaskIdOperation, "navigateAction1.Url", "http://acm.sjtu.edu.cn/OnlineJudge/problems?page=" + new Random().Next(1, 100));
-                Console.WriteLine("OK.");
+                    Console.WriteLine("UpdateTaskRuleProperty: navigateAction1.Url");
+                    octoparseSample.UpdateTaskRuleProperty<string>(Token.AccessToken, TaskIdOperation, "navigateAction1.Url", "http://acm.sjtu.edu.cn/OnlineJudge/problems?page=" + new Random().Next(1, 100));
+                    Console.WriteLine("OK.");
 
-                Console.WriteLine("GetTaskRulePropertyByName: navigateAction1.Url");
-                var properties = octoparseSample.GetTaskRulePropertyByName<string[]>(Token.AccessToken, TaskIdOperation, "navigateAction1.Url");
-                Console.WriteLine(properties.FirstOrDefault());
+                    Console.WriteLine("GetTaskRulePropertyByName: navigateAction1.Url");
+                    var properties = octoparseSample.GetTaskRulePropertyByName<string[]>(Token.AccessToken, TaskIdOperation, "navigateAction1.Url");
+                    Console.WriteLine(properties.FirstOrDefault());
 
-                Console.WriteLine("UpdateTaskRuleProperty: loopAction2.TextList");
-                octoparseSample.UpdateTaskRuleProperty<string[]>(Token.AccessToken, TaskIdOperation, "loopAction2.TextList", new string[] { "testText1", "testText2" });
-                Console.WriteLine("OK.");
+                    Console.WriteLine("UpdateTaskRuleProperty: loopAction2.TextList");
+                    octoparseSample.UpdateTaskRuleProperty<string[]>(Token.AccessToken, TaskIdOperation, "loopAction2.TextList", new string[] { "testText1", "testText2" });
+                    Console.WriteLine("OK.");
 
-                Console.WriteLine("GetTaskRulePropertyByName: loopAction2.TextList");
-                properties = octoparseSample.GetTaskRulePropertyByName<string[]>(Token.AccessToken, TaskIdOperation, "loopAction2.TextList");
-                Console.WriteLine(properties.FirstOrDefault());
-
+                    Console.WriteLine("GetTaskRulePropertyByName: loopAction2.TextList");
+                    properties = octoparseSample.GetTaskRulePropertyByName<string[]>(Token.AccessToken, TaskIdOperation, "loopAction2.TextList");
+                    Console.WriteLine(properties.FirstOrDefault());
+                }
             }
             catch (ApiCallException ex)
             {
                 Console.WriteLine(ex.Error + ex.ErrorDescription);
             }
+            Console.WriteLine("Test finished!");
             Console.ReadKey();
             #endregion
         }
