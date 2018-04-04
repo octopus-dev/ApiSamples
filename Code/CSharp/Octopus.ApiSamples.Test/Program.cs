@@ -41,7 +41,7 @@ namespace Octopus.ApiSamples.Test
                     isAdvanced = bool.Parse(args[1]);
                 }
                 OctoparseSample octoparseSample = new OctoparseSample(address);
-                Token = octoparseSample.GetToken("vaecole", "qwer1010");
+                Token = octoparseSample.GetToken("username", "password");
                 Debug.Assert(Token?.AccessToken != null);
                 Console.WriteLine(Token.AccessToken + Token.ExpiresIn);
 
