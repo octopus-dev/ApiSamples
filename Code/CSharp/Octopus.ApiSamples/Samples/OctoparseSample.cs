@@ -371,7 +371,7 @@ namespace Octopus.ApiSamples
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                throw new ApiCallException(HttpStatusErrors.GetError(response.StatusCode));
+                throw new ApiCallException(HttpStatusErrors.GetError(response.StatusCode), response.Content);
             }
         }
 
