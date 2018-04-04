@@ -12,7 +12,7 @@ namespace Octopus.ApiSamples.Test
     class Program
     {
         public static Token Token;
-        public static string TaskId = "c1b785d4-ac6b-4312-ae03-f13b2430ef52";
+        public static string TaskId = "b14da7c6-d7e7-4f07-b0bc-175f59e86bc9";
         public static string TaskIdOperation = "fdd0875e-545b-4c62-9bc1-e14e8bbb0c73";
         
         static void Main(string[] args)
@@ -41,15 +41,21 @@ namespace Octopus.ApiSamples.Test
                     isAdvanced = bool.Parse(args[1]);
                 }
                 OctoparseSample octoparseSample = new OctoparseSample(address);
-                Token = octoparseSample.GetToken("username", "password");
+                Token = octoparseSample.GetToken("vaecole", "qwer1010");
                 Debug.Assert(Token?.AccessToken != null);
                 Console.WriteLine(Token.AccessToken + Token.ExpiresIn);
 
-                Token = octoparseSample.RefreshToken(Token.RefreshToken);
-                Debug.Assert(Token?.AccessToken != null);
-                Console.WriteLine("Token refreshed!");
-                Console.WriteLine(Token.AccessToken + Token.ExpiresIn);
-
+                try
+                {
+                    Token = octoparseSample.RefreshToken(Token.RefreshToken);
+                    Debug.Assert(Token?.AccessToken != null);
+                    Console.WriteLine("Token refreshed!");
+                    Console.WriteLine(Token.AccessToken + Token.ExpiresIn);
+                }
+                catch (ApiCallException ex)
+                {
+                    Console.WriteLine(ex.Error + ex.ErrorDescription);
+                }
 
                 Console.WriteLine("GetTaskDataByOffset:");
                 var wrappedData = octoparseSample.GetTaskDataByOffset(Token.AccessToken, TaskId, 0, 10);
