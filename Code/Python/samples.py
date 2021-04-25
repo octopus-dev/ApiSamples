@@ -287,7 +287,7 @@ def update_task_rule_property(base_url, token, task_id, action_name, property_va
         """
         print('UpdateTaskRuleProperty: ' + action_name) 
         url = 'api/task/updateTaskRule'
-        content = { 'taskId': task_id, 'name': action_name, 'value': property_value }
+        content = { 'taskId': task_id, 'name': action_name, 'value': json.dumps(property_value) }
         response = util.request_t_post(base_url, url, token, content)
         print(response['error_Description'])
         return response;
