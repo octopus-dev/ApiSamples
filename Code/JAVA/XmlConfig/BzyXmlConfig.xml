@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bzy>
+<!-- 以下为账号配置，请于userName、passWord处分别填入旗舰版以上的八爪鱼账号、密码-->
+	<userName></userName>
+	<passWord></passWord>
+<!--配置参数-->
+	<!-- 起始偏移量0，之后的偏移量根据八爪鱼返回的JSON获取下一批数据 -->
+	<offSet>0</offSet>
+	<!-- size范围为【1，1000】 -->
+	<size>2</size>
+	<!--规则流程名称，从客户端获取-->
+	<property>loopAction1.UrlList</property>
+<!-- 通用API配置信息 -->
+	<!-- 任务组ID -->
+	<taskGroupId>723967</taskGroupId>
+	<!-- 通用API根据起始偏移量获取任务数据 -->
+	<taskIdForOffset>c608dc7a-05bd-41cd-8185-a517ed85469b</taskIdForOffset>
+	<!-- 通用API导出一批数据 -->
+	<taskIdForGetTop>610982f1-e098-487d-9538-bfe698315ecc</taskIdForGetTop>
+	<!-- 清除数据接口-->
+	<taskIdRemoveData>9f4746f7-044f-42de-8b2e-e4e86c2ecf9a</taskIdRemoveData>
+<!--增值API配置信息-->	
+	<taskIdAdvancedForTaskStatus>60f99ee9-8ef8-4267-98e7-12b42de28c61</taskIdAdvancedForTaskStatus>
+	<taskIdAdvancedForUpdateTask>6a5c3ab5-9a67-42c8-8802-02d4d0f56358</taskIdAdvancedForUpdateTask>
+<!-- 以下为八爪鱼接口URL配置 -->
+	<!--通用文档URL-->
+		<!--获取全新token、刷新token-->
+		<tokenURL>http://dataapi.bazhuayu.com/token</tokenURL>
+		<!-- 得到该用户的所有任务组 -->
+		<taskGroupURL>http://dataapi.bazhuayu.com/api/TaskGroup</taskGroupURL>
+		<!-- 获取任务组中的任务 -->
+		<taskGroupIdURL>http://dataapi.bazhuayu.com/api/Task?taskGroupId</taskGroupIdURL>
+		<!--根据起始偏移量获取任务数据-->
+		<getDataOfTaskByOffsetURL>http://dataapi.bazhuayu.com/api/alldata/GetDataOfTaskByOffset</getDataOfTaskByOffsetURL>
+		<!-- 导出一批任务数据 -->
+		<getTopURL>http://dataapi.bazhuayu.com/api/notexportdata/gettop</getTopURL>
+		<!-- 标记数据为已导出状态 -->
+		<updateURL>http://dataapi.bazhuayu.com/api/notexportdata/update?taskId=</updateURL>
+		<!-- 清空任务数据-->
+		<removeDataByTaskIdURL>http://dataapi.bazhuayu.com/api/task/RemoveDataByTaskId?taskId=</removeDataByTaskIdURL>
+	<!-- 增值API 下列接口需要付费，费用请咨询客服或商务-->
+		<!-- 获取增值API token、刷新增值API token -->
+		<advancedAPIToken>http://advancedapi.bazhuayu.com/token</advancedAPIToken>
+		<!-- 八爪鱼控制任务启动接口 -->
+		<advancedStartTask>http://advancedapi.bazhuayu.com/api/task/StartTask?taskId</advancedStartTask>
+		<!-- 八爪鱼停止任务接口 -->
+		<advancedStopTask>http://advancedapi.bazhuayu.com/api/task/StopTask?taskId</advancedStopTask>
+		<!-- 八爪鱼获取任务状态接口 -->
+		<advancedGetTaskStatusByIdList>http://advancedapi.bazhuayu.com/api/task/GetTaskStatusByIdList</advancedGetTaskStatusByIdList>
+		<!-- 八爪鱼获取任务参数接口 -->
+		<advancedGetTaskRulePropertyByName>http://advancedapi.bazhuayu.com/api/task/GetTaskRulePropertyByName</advancedGetTaskRulePropertyByName>
+		<!-- 八爪鱼更新任务参数接口 -->
+		<advancedUpdateTaskRule>http://advancedapi.bazhuayu.com/api/task/UpdateTaskRule</advancedUpdateTaskRule>
+		<!-- 八爪鱼添加参数项接口 -->
+		<advancedAddUrlOrTextToTask>http://advancedapi.bazhuayu.com/api/task/AddUrlOrTextToTask</advancedAddUrlOrTextToTask>
+</bzy>
